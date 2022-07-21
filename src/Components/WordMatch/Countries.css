@@ -1,0 +1,11 @@
+.active {
+    background-color: blue;
+}
+
+button.btn:active {
+    background-color: blue;
+}
+
+:target {
+    background-color: blue;
+}
