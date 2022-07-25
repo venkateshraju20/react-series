@@ -1,0 +1,18 @@
+form {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+}
+
+input {
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    outline: none;
+}
+
+.submit {
+    cursor: pointer;
+    border: 1px solid rgb(107, 106, 106);
+    border-radius: 2px;
+}

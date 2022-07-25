@@ -1,6 +1,5 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import About from "./Components/Pages/About";
 import Contact from "./Components/Pages/Contact";
 import Home from "./Components/Pages/Home";
 import Navbar from "./Components/Navigation/Navbar";
@@ -13,6 +12,8 @@ import UseCallbacks from "./Components/Hooks/useCallbacks/UseCallbacks";
 import UseMemo from "./Components/Hooks/useMemo/UseMemo";
 import Dropdown from "./Components/Dropdown/Dropdown";
 import FetchData from "./Components/Redux/FetchData";
+import SimpleForm from "./Components/Forms/SimpleForm";
+import SimpleHOC from "./Components/HOC/SimpleHOC";
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route exact path="/" element={<Home />} />
-        <Route exact path="/aboutus" element={<About />} />
+        <Route exact path="/simple-hoc" element={<SimpleHOC />} />
         <Route exact path="/contactus" element={<Contact />} />
         <Route exact path="/counter" element={<ParentClass />} />
         <Route exact path="/listdata" element={<ListData />} />
@@ -31,6 +32,7 @@ function App() {
         <Route exact path="/use-callbacks" element={<UseCallbacks />} />
         <Route exact path="/dropdown-list" element={<Dropdown />} />
         <Route exact path="/redux-api" element={<FetchData />} />
+        <Route exact path="/simple-form" element={<SimpleForm />} />
       </Routes>
     </>
   );

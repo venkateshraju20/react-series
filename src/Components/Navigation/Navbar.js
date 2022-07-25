@@ -9,7 +9,7 @@ function Navbar() {
           <NavLink to="/">Home</NavLink>
         </li>
         <li>
-          <NavLink to="/aboutus">HOC example</NavLink>
+          <NavLink to="/simple-hoc">HOC example</NavLink>
         </li>
         <li>
           <NavLink to="/contactus">Contact us</NavLink>
@@ -40,6 +40,9 @@ function Navbar() {
         </li>
         <li>
           <NavLink to="/redux-api">Redux thunk API</NavLink>
+        </li>
+        <li>
+          <NavLink to="/simple-form">React Form</NavLink>
         </li>
       </ul>
     </>
