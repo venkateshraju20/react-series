@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { omit } from "lodash";
+import { emailReg, passwordReg } from "./RegExp";
 
 const useForm = (callback) => {
   const [values, setValues] = useState({});
@@ -15,7 +16,12 @@ const useForm = (callback) => {
     }
   };
 
-  const validation = (event, name, value) => {
+  const validation = (event, name, value, checked) => {
+    const omitErrors = (value) => {
+      let newObj = omit(errors, value);
+      setErrors(newObj);
+    };
+
     switch (name) {
       case "username":
         if (value.length <= 4) {
@@ -24,42 +30,51 @@ const useForm = (callback) => {
             username: "Username atleast have 5 characters",
           });
         } else {
-          let newObj = omit(errors, "username");
-          setErrors(newObj);
+          omitErrors("username");
         }
         break;
 
       case "email":
-        const emailReg = new RegExp(
-          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-        );
-
         if (!emailReg.test(value)) {
           setErrors({
             ...errors,
             email: "Email address is not valid",
           });
         } else {
-          let newObj = omit(errors, "email");
-          setErrors(newObj);
+          omitErrors("email");
         }
         break;
 
       case "password":
-        const passwordReg = new RegExp(
-          /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/
-        );
         if (!passwordReg.test(value)) {
           setErrors({
             ...errors,
             password: "Password atleast have 8 characters",
           });
         } else {
-          let newObj = omit(errors, "password");
-          setErrors(newObj);
+          omitErrors("password");
         }
         break;
-
+      case "dropdown":
+        if (value === "Select") {
+          setErrors({
+            ...errors,
+            dropdown: "Select value",
+          });
+        } else {
+          omitErrors("dropdown");
+        }
+        break;
+      case "checkbox":
+        if (checked === false) {
+          setErrors({
+            ...errors,
+            checkbox: "Select box",
+          });
+        } else {
+          omitErrors("checkbox");
+        }
+        break;
       default:
         break;
     }
@@ -69,10 +84,13 @@ const useForm = (callback) => {
     e.preventDefault();
     let name = e.target.name;
     let value = e.target.value;
+    let checkbox = e.target.checked;
 
-    validation(e, name, value);
+    validation(e, name, value, checkbox);
 
     setValues({ ...values, [name]: value });
+    // setValues.push({ [name]: checkbox });
+    console.log(checkbox);
   };
 
   return {
